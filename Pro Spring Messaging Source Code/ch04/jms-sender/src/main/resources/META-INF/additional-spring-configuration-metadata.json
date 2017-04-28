@@ -1,0 +1,20 @@
+{"properties": [{
+  "name": "apress.jms.queue",
+  "type": "java.lang.String",
+  "description": "The queue name"
+},{
+  "name": "apress.jms.topic",
+  "type": "java.lang.String",
+  "description": "The topic name"
+},{
+  "name": "apress.jms.rate-queue",
+  "type": "java.lang.String",
+  "description": "The Rate queue name"
+
+},{
+  "name": "apress.jms.rate-reply-queue",
+  "type": "java.lang.String",
+  "description": "The Rate reply queue name"
+
+}]}
+

@@ -1,0 +1,5 @@
+{"properties": [{
+  "name": "apress.jms.topic",
+  "type": "java.lang.String",
+  "description": "The topic name"
+}]}

@@ -1,0 +1,13 @@
+{"properties": [{
+  "name": "rata.jms.queue-name",
+  "type": "java.lang.String",
+  "description": "The Rate Queue name"
+},{
+  "name": "rate.jms.reply-queue-name",
+  "type": "java.lang.String",
+  "description": "The Reply Rate Queue name"
+},{
+  "name": "rate.redis.topic",
+  "type": "java.lang.String",
+  "description": "The Redis Rate topic"
+}]}

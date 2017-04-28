@@ -1,0 +1,11 @@
+security:
+  basic:
+    enabled: false
+
+yahoo:
+  client-id: dj0yJmk9emcxQU5XQWVaTXY2JmQ9WVdrOVJtWnVZV0ZJTm0wbWNHbzlNQS0tJnM9Y29uc3VtZXJzZWNyZXQmeD00Zg--
+  client-secret: 2134dfca8d11673217d1768741428fc598daa447
+  user-authorization-uri: https://api.login.yahoo.com/oauth2/request_auth
+  access-token-uri: https://api.login.yahoo.com/oauth2/get_token
+  grant-type: password
+  token-name: token
