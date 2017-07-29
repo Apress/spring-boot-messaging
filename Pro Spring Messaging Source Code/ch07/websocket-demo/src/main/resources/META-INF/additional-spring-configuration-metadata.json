@@ -1,0 +1,21 @@
+{"properties": [{
+  "name": "apress.ws.topic",
+  "type": "java.lang.String",
+  "description": "The Web Socket Topic name"
+},{
+  "name": "apress.ws.app-destination-prefix",
+  "type": "java.lang.String",
+  "description": "The Application destination prefix"
+},{
+  "name": "apress.ws.rate",
+  "type": "java.lang.String",
+  "description": "The Web Socket Rate Topic name"
+},{
+  "name": "apress.ws.mapping",
+  "type": "java.lang.String",
+  "description": "The Web Socket Mapping that accept incoming web socket messages"
+},{
+  "name": "apress.ws.endpoint",
+  "type": "java.lang.String",
+  "description": "The Web Socket Endpoint path"
+}]}

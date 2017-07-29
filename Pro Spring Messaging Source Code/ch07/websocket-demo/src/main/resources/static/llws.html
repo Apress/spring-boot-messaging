@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+	<title>Spring Boot Messaging with Low Level Web Sockets</title>
+	<link rel="stylesheet" href="/webjars/bootstrap/3.3.5/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/webjars/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+</head>
+<body>
+	<div class="container theme-showcase" role="main">
+		<div class="jumbotron">
+        		<h1>Spring Boot Messaging with low-level Web Sockets</h1>
+        		<p>A simple example for using low-level Web Sockets with Spring Boot!</p>
+      	</div>
+	
+		<div class="page-header">
+        		<h1>WebSockets</h1>
+      	</div>
+      	<div class="row">
+        		<div class="col-sm-4">
+				 <div class="panel panel-success">
+            			<div class="panel-heading">
+              			<h3 class="panel-title">Send a Message:</h3>
+            			</div>
+            			<div class="panel-body">
+            				
+              			<div class="form-group">
+              				<label for="user">User</label><br/>
+              				<input type="text" id="user" value="anonymous"/>
+              			</div>
+              			<div class="form-group">
+              				<label for="message">Message</label><br/>
+              				<textarea id="message">You message here...</textarea>
+              			
+              			</div>
+              			<button id="send">Send</button>
+              			
+            			</div>
+          		 </div>
+			</div>
+			<div class="col-sm-8">
+				<div class="panel panel-primary">
+  					<div class="panel-heading">
+    						<h3 class="panel-title">Echo messages from the Server:</h3>
+  					</div>
+				  	<div class="panel-body">
+				    		<div id="output">
+						</div>
+				  	</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	
+	<script src="/webjars/jquery/3.1.1/jquery.min.js"></script>
+	
+	<script>
+		
+		$(function(){
+			
+			var connection = new WebSocket('ws://localhost:8080/llws');
+			connection.onopen = function () {
+				console.log('Connected...');
+			};
+			connection.onmessage = function(event){
+				console.log('>>>>> ' + event.data);
+				var json = JSON.parse(event.data);
+		    	$("#output").append("<span><strong>" + json.user + "</strong>: <em>" + json.message  +"</em></span><br/>");
+			};
+			connection.onclose   = function(event){
+				$("#output").append("<p class=\"text-uppercase\"><strong>CONNECTION: CLOSED</strong></p>");
+			};
+				
+			$("#send").click(function(){
+				var message = {}
+				message["user"] = $("#user").val();
+				message["message"] = $("#message").val();
+				connection.send(JSON.stringify(message));
+			});
+			
+		});
+	</script>
+</body>
+</html>
