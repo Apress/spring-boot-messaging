@@ -39,6 +39,16 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-mongodb-reactive</artifactId>
 		</dependency>
+		
+		<!-- 
+			This is necessary to continue using the Mono.then( function/lambda ), this will change with reactor-core 
+			3.1.0.RELEASE
+		 -->
+		<dependency>
+			<groupId>io.projectreactor</groupId>
+			<artifactId>reactor-core</artifactId>
+			<version>3.0.7.RELEASE</version>
+		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

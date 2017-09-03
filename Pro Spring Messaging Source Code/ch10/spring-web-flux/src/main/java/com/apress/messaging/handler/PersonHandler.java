@@ -19,7 +19,7 @@ import reactor.core.publisher.Mono;
 @Component
 public class PersonHandler {
 	PersonRepository repo;
-	EmitterProcessor<Person> stream = EmitterProcessor.<Person>create().connect();
+	EmitterProcessor<Person> stream = EmitterProcessor.<Person>create(); //.connect();
 	
 	PersonHandler(PersonRepository repo) {
 		this.repo = repo;
@@ -33,10 +33,10 @@ public class PersonHandler {
 	public Mono<ServerResponse> findById(ServerRequest request) {
 		String personId = request.pathVariable("id");
 		Mono<ServerResponse> notFound = ServerResponse.notFound().build();
-		Mono<Optional<Person>> personMono = Mono.just(this.repo.findOne(personId)); // Mono.fromFuture(this.repo.findById(personId));
+		Mono<Optional<Person>> personMono = Mono.just(this.repo.findById(personId)); // Mono.fromFuture(this.repo.findById(personId));
 
 		return personMono.then(person -> ServerResponse.ok().contentType(APPLICATION_JSON).body(fromObject(person)))
-				.otherwiseIfEmpty(notFound);
+				.switchIfEmpty(notFound);
 	}
 	
 	public Mono<ServerResponse> createPerson(ServerRequest request) { 

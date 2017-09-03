@@ -1,5 +1,7 @@
 package com.apress.messaging.controller;
 
+import java.util.Optional;
+
 import org.springframework.http.MediaType;
 import org.springframework.integration.support.MessageBuilder;
 import org.springframework.messaging.MessageHandler;
@@ -33,8 +35,8 @@ public class ReactiveController {
 	}
 	
 	@GetMapping("/person/{id}")
-	Mono<Person> findById(@PathVariable String id) {
-		return Mono.just(this.repo.findOne(id));
+	Mono<Optional<Person>> findById(@PathVariable String id) {
+		return Mono.just(this.repo.findById(id));
 	}
 	
 	@GetMapping(value="/person-watcher", produces=MediaType.TEXT_EVENT_STREAM_VALUE)
@@ -42,7 +44,7 @@ public class ReactiveController {
 		return Flux.create( sink -> {
 			MessageHandler handler = message -> sink.next((Person) message.getPayload());
 			personChannel.subscribe(handler);
-			sink.setCancellation(() -> personChannel.unsubscribe(handler));
+			sink.onCancel(() -> personChannel.unsubscribe(handler)); //.setCancellation(() -> personChannel.unsubscribe(handler));
 		});
 				
 	}
